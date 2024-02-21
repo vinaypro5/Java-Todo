@@ -4,8 +4,7 @@ pipeline {
     stages {
         stage("Checkout") {
             steps {
-                git branch: 'master', 
-                url: 'https://github.com/vinaypro5/Java-Todo.git'
+                git url: 'https://github.com/vinaypro5/Java-Todo.git'
                 echo '*************** ## CHECK-OUT DONE ## ********************'
             }
         }
