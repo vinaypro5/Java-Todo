@@ -2,6 +2,11 @@ pipeline {
     agent any 
 
     stages {
+        stage('Preparation') {
+    steps {
+        cleanWs()
+    }
+}
         stage("Checkout") {
             steps {
                 git url: 'https://github.com/vinaypro5/Java-Todo.git'
@@ -31,4 +36,3 @@ pipeline {
 }
 
              
-
