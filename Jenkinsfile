@@ -5,33 +5,29 @@ pipeline {
         stage("Checkout") {
             steps {
                 git branch: 'master', 
-                url: 'https://github.com/ash2code/Todolist.git'
+                url: 'https://github.com/vinaypro5/Java-Todo.git'
+                echo '*************** ## CHECK-OUT DONE ## ********************'
             }
         }
         stage("Build") {
             steps {
-                sh "mvn clean install"
+                bat "mvn clean install"
+                echo '*************** BUILD DONE ********************'
             }
         }
         stage("Test") {
             steps {
-                sh "mvn test"
+                bat "mvn test"
+                echo '*************** TEST DONE ********************'
             }
         }
         stage("Package") {
             steps {
-                sh "mvn package"
+                bat "mvn package"
+                echo '*************** PACKAGE DONE ********************'
             }
         }
-        stage('SonarQube analysis') {
-            steps {
-                script {
-                    docker.image('sonarqube:latest').inside {
-                        sh "/opt/sonar-scanner/bin/sonar-scanner"
-                    }
-                }
-            }
-        }
+
     }
 }
 
