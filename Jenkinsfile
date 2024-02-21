@@ -23,15 +23,6 @@ pipeline {
                 sh "mvn package"
             }
         }
-        stage ("Docker-Build") {
-            steps {
-                sh "docker build -t ash2code/todo-list ."
-            }
-        } 
-        stage ("Docker-Run") {
-            steps {
-                sh "docker container run -dt -p 8085:8080 --name todo ash2code/todo-list"
-            }
-        }
     }
 }
+
