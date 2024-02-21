@@ -26,7 +26,7 @@ pipeline {
         stage('SonarQube analysis') {
             steps {
                 script {
-                    withSonarQubeEnv('sonarqubex') {
+                    docker.image('sonarqube:latest').inside {
                         sh "/opt/sonar-scanner/bin/sonar-scanner"
                     }
                 }
