@@ -23,6 +23,17 @@ pipeline {
                 sh "mvn package"
             }
         }
+        stage('SonarQube analysis') {
+            steps {
+                script {
+                    withSonarQubeEnv('SonarQube Server') {
+                        sh "/opt/sonar-scanner/bin/sonar-scanner"
+                    }
+                }
+            }
+        }
     }
 }
+
+             
 
