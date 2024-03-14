@@ -1,38 +1,14 @@
 pipeline {
-    agent any 
-
+    agent 'any' // Specifies that this pipeline can run on any available agent (node/agent) in the Jenkins environment.
+    
+    tools {
+        mvn 'm3' // Specifies the Maven tool to be used. 'm3' is the name of the Maven tool configured in Jenkins.
+    }
+    
     stages {
-        stage('Preparation') {
-    steps {
-        cleanWs()
+        stage("Git-Checkout") { // Defines a stage named "Git-Checkout".
+            git branch: 'main', url: 'https://github.com/vinaypro5/Java-Todo.git' // Checkout code from the specified Git repository URL and branch.
+            echo '*************** ## CHECK-OUT DONE ## ********************' // Prints a message indicating that the checkout process is completed.
+        }
     }
 }
-        stage("Checkout") {
-            steps {
-                git url: 'https://github.com/vinaypro5/Java-Todo.git'
-                echo '*************** ## CHECK-OUT DONE ## ********************'
-            }
-        }
-        stage("Build") {
-            steps {
-                bat "mvn clean install"
-                echo '*************** BUILD DONE ********************'
-            }
-        }
-        stage("Test") {
-            steps {
-                bat "mvn test"
-                echo '*************** TEST DONE ********************'
-            }
-        }
-        stage("Package") {
-            steps {
-                bat "mvn package"
-                echo '*************** PACKAGE DONE ********************'
-            }
-        }
-
-    }
-}
-
-             
