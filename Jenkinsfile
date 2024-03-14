@@ -19,5 +19,15 @@ pipeline {
                 }
             }
         }
+        
+        stage("build-maven") {
+            steps {
+                script {
+                    bat "mvn clean install"
+                    echo '*************** BUILD DONE ********************'
+                }
+            }
+        }
     }
 }
+
