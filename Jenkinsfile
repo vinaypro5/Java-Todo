@@ -1,8 +1,7 @@
 pipeline {
     agent any
     tools {
-        // Define Maven tool correctly
-        maven 'm3'
+        maven 'm3' // Define Maven tool correctly
     }
     stages {
         stage("Git-Checkout") {
@@ -12,7 +11,11 @@ pipeline {
                         // Checkout code from Git repository
                         git branch: 'main', url: 'https://github.com/vinaypro5/Java-Todo.git'
                         echo '*************** ## CHECK-OUT DONE ## ********************'
-                    } 
+                    } catch (Exception e) {
+                        echo "An error occurred during Git checkout: ${e.message}"
+                        // You may add further error handling or actions here if needed
+                        error "Git checkout failed"
+                    }
                 }
             }
         }
