@@ -1,5 +1,5 @@
 pipeline {
-    agent "any"
+    agent any
     tools{
         mvn "m3"
     }
