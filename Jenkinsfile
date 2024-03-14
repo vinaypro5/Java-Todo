@@ -1,7 +1,7 @@
 pipeline {
-    agent 'any'
+    agent "any"
     tools{
-        mvn 'm3'
+        mvn "m3"
     }
     stages {
         stage ("Git-Checkout"){
